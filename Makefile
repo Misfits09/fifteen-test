@@ -1,4 +1,7 @@
-update: services
+deploy: services
+	docker-compose up -d
+
+deploy-update: services
 	docker-compose up --build -d
 	docker image prune -f
 

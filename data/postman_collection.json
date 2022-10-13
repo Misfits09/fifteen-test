@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "7d406a33-bcb4-44dc-87fe-b893bd628cee",
+		"name": "Fifteen",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20784453"
+	},
+	"item": [
+		{
+			"name": "Bike",
+			"item": [
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BIKE_URL}}/",
+							"host": [
+								"{{BIKE_URL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BIKE_URL}}/bike2",
+							"host": [
+								"{{BIKE_URL}}"
+							],
+							"path": [
+								"bike2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert/Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"bike2\",\n    \"location\": {\n        \"type\": \"Point\",\n        \"coordinates\": [5.42, 5.424268020]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BIKE_URL}}/",
+							"host": [
+								"{{BIKE_URL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Random Insert",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const dataJSON = JSON.parse(pm.collectionVariables.get('dataJSON'));",
+									"",
+									"const randomItem = dataJSON[Math.floor(Math.random() * dataJSON.length)]",
+									"",
+									"console.log(\"Updated \", JSON.stringify(randomItem))",
+									"",
+									"pm.request.body.raw = JSON.stringify(randomItem)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BIKE_URL}}/",
+							"host": [
+								"{{BIKE_URL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Geo find",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const queriedDate = \"2022-10-13T23:37:12+02:00\";",
+							"",
+							"pm.variables.set(\"parsedDateTime\", encodeURIComponent(queriedDate));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{GEO_URL}}/bike2?time={{parsedDateTime}}",
+					"host": [
+						"{{GEO_URL}}"
+					],
+					"path": [
+						"bike2"
+					],
+					"query": [
+						{
+							"key": "time",
+							"value": "{{parsedDateTime}}",
+							"description": "Important to URL Encode \"+\" and others"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BIKE_URL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "GEO_URL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "parsedDateTime",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "dataJSON",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
