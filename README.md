@@ -22,4 +22,17 @@ Have a MongoDB and RabbitMQ instances setup. Refer to `services/bike` and `servi
 
 ## Design Choices
 
-**Coming Soon**
+Services are all defined in `services` folder and share as much as possible of their code through the `shared` module.
+
+A lightweight http server has been use called `Echo`. This one has been chosen as there is not big complex logic to be done in either services and provided all necessary features while being very popular/maintained.
+
+From the start both services have been run with `docker-compose` to allow better DX and overall quicker development. Some commands have been also added in the root Makefile for simplicity.
+`RabbitMQ` has been chosen as the queuing service to allow it to be easily deployed locally along other services in a dockerised environment.
+
+Both services are developped around the `shared` module which mainly allows to abstract the logic to connect to `RabbitMQ` or `MongoDB` and have common structure types which is very important to make sure communications run smoothly.
+For example using shared types allow to have safe JSON (De)Marshalling through the queuing system.
+Finally some helpers have been defined there for other common logics (like in our case generating an error responses).
+
+As we only have few routes per service, all the routing and request handling has been centralized in both `main.go` despite having some of the logic splitted in other files for visibility.
+
+Finally some simple linting has been added to the gitflow in the Github Actions CI and triggered on Pull Requests.
