@@ -27,7 +27,7 @@ func main() {
 	channel, queue := rabbitmq.ConnectToRabbitMq()
 	dbClient := db.ConnectDB()
 	collection := getBikesLocationsCollection(dbClient)
-	setupIndexes(collection)
+	setupCollectionIndexes(collection)
 
 	var wg sync.WaitGroup
 	wg.Add(ParalleledProcesses)
@@ -53,7 +53,6 @@ func startServer(collection *mongo.Collection, wg *sync.WaitGroup) {
 
 		entry := new(structs.InternalLocationEntry)
 		err = collection.FindOne(context.Background(), bson.M{"bikeId": id, "time": bson.M{"$lte": parsedTime.Unix()}}, options.FindOne().SetSort(bson.M{"time": -1})).Decode(&entry)
-
 		if err != nil {
 			return h.SendErrorResponse(c, nil, http.StatusNotFound)
 		}

@@ -18,7 +18,3 @@ func ConnectDB() *mongo.Client {
 
 	return client
 }
-
-func GetBikeCollection(dbClient *mongo.Client) *mongo.Collection {
-	return dbClient.Database("fifteen").Collection("bikes")
-}

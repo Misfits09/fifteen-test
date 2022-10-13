@@ -12,7 +12,7 @@ func getBikesLocationsCollection(dbClient *mongo.Client) *mongo.Collection {
 	return dbClient.Database("fifteen").Collection("bikes_locations")
 }
 
-func setupIndexes(collection *mongo.Collection) {
+func setupCollectionIndexes(collection *mongo.Collection) {
 	_, err := collection.Indexes().CreateMany(context.Background(), []mongo.IndexModel{{
 		Keys: bson.M{
 			"bikeId": 1,

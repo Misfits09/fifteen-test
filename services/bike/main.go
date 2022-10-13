@@ -28,7 +28,7 @@ func main() {
 		}
 	}()
 
-	bikeCollection := db.GetBikeCollection(dbClient)
+	bikeCollection := getBikeCollection(dbClient)
 
 	e.GET("/", func(c echo.Context) error {
 		bikeList, err := listBikes(c, *bikeCollection)
