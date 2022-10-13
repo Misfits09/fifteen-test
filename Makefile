@@ -5,3 +5,6 @@ update: services
 destroy: services
 	docker-compose down
 	docker image prune -f
+
+lint: services
+	golangci-lint run services/*

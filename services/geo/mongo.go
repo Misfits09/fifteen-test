@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
+	"log"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
-	mongodb "go.mongodb.org/mongo-driver/mongo"
 )
 
 func getBikesLocationsCollection(dbClient *mongo.Client) *mongo.Collection {
@@ -13,7 +13,7 @@ func getBikesLocationsCollection(dbClient *mongo.Client) *mongo.Collection {
 }
 
 func setupIndexes(collection *mongo.Collection) {
-	collection.Indexes().CreateMany(context.Background(), []mongodb.IndexModel{{
+	_, err := collection.Indexes().CreateMany(context.Background(), []mongo.IndexModel{{
 		Keys: bson.M{
 			"bikeId": 1,
 		},
@@ -24,4 +24,8 @@ func setupIndexes(collection *mongo.Collection) {
 		},
 		Options: nil,
 	}})
+
+	if err != nil {
+		log.Fatal("Could not create database indexes")
+	}
 }

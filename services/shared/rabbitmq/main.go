@@ -8,11 +8,11 @@ import (
 )
 
 func ConnectToRabbitMq() (*amqp.Channel, amqp.Queue) {
-	mq_url := os.Getenv("RABBITMQ_URL")
-	conn, err := amqp.Dial(mq_url)
+	mqURL := os.Getenv("RABBITMQ_URL")
+	conn, err := amqp.Dial(mqURL)
 
 	if err != nil {
-		log.Panic("Could not connect to Rabbit MQ", mq_url)
+		log.Panic("Could not connect to Rabbit MQ")
 	}
 
 	channel, err := conn.Channel()
