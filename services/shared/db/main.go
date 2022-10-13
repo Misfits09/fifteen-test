@@ -1,4 +1,4 @@
-package mongo
+package db
 
 import (
 	"context"
@@ -13,8 +13,7 @@ func ConnectDB() *mongo.Client {
 	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI(os.Getenv("DB_URL")))
 
 	if err != nil {
-		log.Fatal("Could not connect to database")
-		panic(err)
+		log.Panic("Could not connect to database", err)
 	}
 
 	return client
