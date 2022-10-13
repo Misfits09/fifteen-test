@@ -1,0 +1,7 @@
+go 1.19
+
+use ./services/bike
+
+use ./services/geo
+
+use ./services/shared
