@@ -20,7 +20,6 @@ services:
     environment:
       DB_URL: mongodb://root:example@mongo:27017
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
-      TZ: Europe/Paris
     depends_on:
       - mongo
       - rabbitmq
@@ -35,7 +34,6 @@ services:
     environment:
       DB_URL: mongodb://root:example@mongo:27017
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
-      TZ: Europe/Paris
     depends_on:
       - mongo
       - rabbitmq

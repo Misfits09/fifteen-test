@@ -7,6 +7,8 @@ import (
 	amqp "github.com/rabbitmq/amqp091-go"
 )
 
+const queueName = "location_update"
+
 func ConnectToRabbitMq() (*amqp.Channel, amqp.Queue) {
 	mqURL := os.Getenv("RABBITMQ_URL")
 	conn, err := amqp.Dial(mqURL)
@@ -20,7 +22,7 @@ func ConnectToRabbitMq() (*amqp.Channel, amqp.Queue) {
 		log.Panic("Could not connect to Rabbit MQ Channel")
 	}
 
-	queue, err := channel.QueueDeclare("location_update", true, false, false, false, nil)
+	queue, err := channel.QueueDeclare(queueName, true, false, false, false, nil)
 	if err != nil {
 		log.Panic("Could declare queue")
 	}
