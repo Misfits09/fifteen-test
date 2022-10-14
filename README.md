@@ -10,7 +10,7 @@ A postman collection example is available at `data/postman_collection.json` for 
 
 ### Prefered
 
-To make sure the service all services have their depencies (including the mongoDB and the RabbitMQ queuing) it is prefered to use the provided `docker-compose.yml` provided at the root of this project.
+To make sure all services have their depencies (including the mongoDB and RabbitMQ services) it is prefered to use the provided `docker-compose.yml` provided at the root of this project.
 
 _NB: Do not hesitate to update the `docker-compose.yml` file to use actual secrets on both mongodb and rabbitmq services._
 
@@ -18,7 +18,7 @@ To deploy simply make sure Docker is installed on your machine and run `make dep
 
 ### Manual
 
-Have a MongoDB and RabbitMQ instances setup. Refer to `services/bike` and `services/geo` READMEs to run both services.
+Have a MongoDB and RabbitMQ instances setup. Refer to [`services/bike`](services/bike/README.md) and [`services/geo`](services/geo/README.md) READMEs to run both services.
 
 ## Design Choices
 
