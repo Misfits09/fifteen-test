@@ -26,7 +26,7 @@ When running the docker exposes the 8080 port.
 
 ### Prefered
 
-To make sure the service has all its depencies (including the mongoDB and the RabbitMQ queuing) it is prefered to use the provided `docker-compose.yml` provided at the root of the project. Refer to the root README for how to use it.
+To make sure the service has all its depencies (including the mongoDB and the RabbitMQ queuing) it is prefered to use the provided `docker-compose.yml` provided at the root of the project. Refer to the [root README](../../README.md) for how to use it.
 
 ### Manual
 
